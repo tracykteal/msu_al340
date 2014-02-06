@@ -3,33 +3,32 @@
 **Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani for Software Carpentry http://http://software-carpentry.org/ **
 * Modified by Tracy Teal *
 
-## What is the shell? How do I access the shell?
+## What is the shell? 
 
 The *shell* is a program that presents a command line interface
 which allows you to control your computer using commands entered
 with a keyboard instead of controlling graphical user interfaces
 (GUIs) with a mouse/keyboard combination.
 
+There are many reasons to learn about the shell. The main reason is *power*.
+The command line gives you the power to do your work more efficiently and 
+more quickly.  Alas, there is a bit of a barrier to entry.
+
+![Automation](gvng.jpg)
+
+  Unix is user-friendly. It's just very selective about who its friends are.
+  - Anonymous
+
+The shell can be a great friend. It's just a friendship you have to work for.
+
+Today we're going to go through how to access Unix/Linux and some of the basic 
+shell commands.
+
+## How to access the shell
+
 Use a browser to open the tutorial on github, located at:
 
     https://github.com/tracykteal/msu_al340
-
-A *terminal* is a program you run that gives you access to the
-shell. There are many different terminal programs that vary across
-operating systems.
-
-There are many reasons to learn about the shell. In our opinion, the
-most important reasons are that:
-
-1.  It is very common to encounter the shell and
-    command-line-interfaces in computing, so you will
-    probably have to learn it eventually in the digital humanities
-
-2.  The shell is a really powerful way of interacting with your
-    computer. GUIs and the shell are complementary - by knowing both
-    you will greatly expand the range of tasks you can accomplish with
-    your computer. You will also be able to perform many tasks more
-    efficiently.
 
 The shell is just a program and there are many different shell
 programs that have been developed. The most common shell (and the one
@@ -42,7 +41,7 @@ are different. We recommend sticking with bash and learning it well.
 
 We're going to work on a server set up for this course, but you can also use
 the shell on your own computer.  On a Mac this is the Terminal and on a PC 
-you can download programs like 
+you can download programs like Cygwin.
 
 First we'll connect to that server.  The way we connect to the server is 
 through something called 'ssh' or secure shell.  
@@ -51,11 +50,12 @@ through something called 'ssh' or secure shell.
 
 Now you're in the bash shell.
 
-## The Example: Manipulating Experimental Data Files
+## Starting with the shell
 
 We will spend most of our time learning about the basics of the shell
 by manipulating some experimental data from a hearing test. To get
-the data for this test, you will need internet access. Just enter the
+the data for this test and this documentation, you will need internet access. 
+Just enter the
 command:
 
     git clone git@github.com:tracykteal/msu_al340.git
@@ -63,6 +63,21 @@ command:
 This command will grab all of the data needed for this workshop from
 the internet.  (We're not going to talk about git, but it's a tool for 
 doing version control.)
+
+## Some resources for shell information
+
+http://explainshell.com
+
+
+## The Unix directory file structure (a.k.a. where the heck am I?)
+
+Unix uses a hierarchical file system structure, like an upside down tree
+with root (/) at the base.
+
+When you log in you are on one of the branches of that tree, your home
+directory (/home/username)
+
+It looks like this
 
 
 # Let's get started
