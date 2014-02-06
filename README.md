@@ -1,9 +1,9 @@
 # The Shell
 
-**Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani**
+**Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani for Software Carpentry http://http://software-carpentry.org/ **
 * Modified by Tracy Teal *
 
-# What is the shell? How do I access the shell?
+## What is the shell? How do I access the shell?
 
 The *shell* is a program that presents a command line interface
 which allows you to control your computer using commands entered
@@ -12,9 +12,7 @@ with a keyboard instead of controlling graphical user interfaces
 
 Use a browser to open the tutorial on github, located at:
 
-    https://github.com/swcarpentry/boot-camps/blob/2013-06-wise-beginners
-
-Click on the directory named `shell`.
+    https://github.com/tracykteal/msu_al340
 
 A *terminal* is a program you run that gives you access to the
 shell. There are many different terminal programs that vary across
@@ -24,8 +22,8 @@ There are many reasons to learn about the shell. In our opinion, the
 most important reasons are that:
 
 1.  It is very common to encounter the shell and
-    command-line-interfaces in scientific computing, so you will
-    probably have to learn it eventually
+    command-line-interfaces in computing, so you will
+    probably have to learn it eventually in the digital humanities
 
 2.  The shell is a really powerful way of interacting with your
     computer. GUIs and the shell are complementary - by knowing both
@@ -42,30 +40,39 @@ lot of the basic ones, work across the various shells but many things
 are different. We recommend sticking with bash and learning it well.
 ([Here is a link for more information](http://en.wikipedia.org/wiki/Bash_(Unix_shell))
 
-To open a terminal, just single click on the "Terminal" icon on the
-Desktop.
+We're going to work on a server set up for this course, but you can also use
+the shell on your own computer.  On a Mac this is the Terminal and on a PC 
+you can download programs like 
 
-# The Example: Manipulating Experimental Data Files
+First we'll connect to that server.  The way we connect to the server is 
+through something called 'ssh' or secure shell.  
+
+   ssh msu_username@fws.cal.msu.edu
+
+Now you're in the bash shell.
+
+## The Example: Manipulating Experimental Data Files
 
 We will spend most of our time learning about the basics of the shell
 by manipulating some experimental data from a hearing test. To get
 the data for this test, you will need internet access. Just enter the
 command:
 
-    git clone -b 2013-06-wise-beginners git://github.com/swcarpentry/boot-camps.git
+    git clone git@github.com:tracykteal/msu_al340.git
 
 This command will grab all of the data needed for this workshop from
-the internet.  (We will talk about the `git` command later in the
-workshop.)
+the internet.  (We're not going to talk about git, but it's a tool for 
+doing version control.)
+
 
 # Let's get started
 
 One very basic command is `echo`. This command just prints text to
 the terminal. Try the command:
 
-    echo Hello, World
+    echo Hello, World!
 
-Then press enter. You should see the text "Hello, World" printed back
+Then press enter. You should see the text "Hello, World!" printed back
 to you. The echo command is useful for printing from a shell script,
 for displaying variables, and for generating known values to pass
 to other programs.
