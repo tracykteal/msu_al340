@@ -89,6 +89,7 @@ doing version control.)
 ## Some resources for shell information
 
 http://explainshell.com
+http://www.commandlinefu.com
 
 ## Commands in the shell - let's get started
 
