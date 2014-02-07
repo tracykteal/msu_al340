@@ -1,7 +1,7 @@
 # The Shell
 
-**Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani for Software Carpentry http://http://software-carpentry.org/ **
-* Modified by Tracy Teal *
+**Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani for Software Carpentry http://http://software-carpentry.org/**
+*Modified by Tracy Teal*
 
 ## Objectives
 - What is the shell?
