@@ -32,6 +32,20 @@ more quickly.  Alas, there is a bit of a barrier to entry.
 Today we're going to go through how to access Unix/Linux and some of the basic 
 shell commands.
 
+## An automation use case
+
+Text Complexity in Newspapers
+http://cdn.lexile.com/m/cms_page_media/135/Text%20Complexity%20of%20English%20International%20Newspapers_1.pdf
+
+Another newspaper case
+
+Get the front page of the newspaper from a particular newspaper in different years
+http://chroniclingamerica.loc.gov/lccn/sn98066406/issues/first_pages/
+
+Count occurances of a particular word
+
+
+
 ## How to access the shell
 
 Use a browser to open the tutorial on github, located at:
@@ -1016,6 +1030,15 @@ have probably had the same question.
 - Learn by doing. There's no real other way to learn this than by trying it
 out.  Write your next paper in nano (really emacs or vi), open pdfs from
 the command line, automate something you don't really need to automate.
+
+## What are computational resources at MSU
+
+- The people who run this server
+- iCER and the High Performance Computing Cluster http://icer.msu.edu
+If you're doing work with a professor, you can get a free account and storage 
+on the HPCC.  There are also people at iCER who will help get you started
+or answer questions.
+
 
 ## Bonus:
 
