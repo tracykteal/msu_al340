@@ -3,6 +3,18 @@
 **Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani for Software Carpentry http://http://software-carpentry.org/ **
 * Modified by Tracy Teal *
 
+## Objectives
+- What is the shell?
+- How do you access it?
+- An example of why it's great
+- How do you use it?
+  - Getting around the Unix file system
+  - looking at files
+  - manipulating files
+  - automating tasks
+- What is it good for?
+- Where are resources where I can learn more? (because the shell is awesome)
+
 ## What is the shell? 
 
 The *shell* is a program that presents a command line interface
@@ -18,8 +30,6 @@ more quickly.  Alas, there is a bit of a barrier to entry.
 
   Unix is user-friendly. It's just very selective about who its friends are.
   - Anonymous
-
-The shell can be a great friend. It's just a friendship you have to work for.
 
 Today we're going to go through how to access Unix/Linux and some of the basic 
 shell commands.
@@ -58,7 +68,7 @@ the data for this test and this documentation, you will need internet access.
 Just enter the
 command:
 
-    git clone git@github.com:tracykteal/msu_al340.git
+    git clone https://github.com/tracykteal/msu_al340.git
 
 This command will grab all of the data needed for this workshop from
 the internet.  (We're not going to talk about git, but it's a tool for 
@@ -68,8 +78,20 @@ doing version control.)
 
 http://explainshell.com
 
+## Commands in the shell - let's get started
 
-## The Unix directory file structure (a.k.a. where the heck am I?)
+One very basic command is `echo`. This command just prints text to
+the terminal. Try the command:
+
+    echo Hello, World!
+
+Then press enter. You should see the text "Hello, World!" printed back
+to you.  This doesn't seem particuarly helpful, other than to just be fun, 
+but we're working on automation it is useful for printing from a shell script,
+for displaying variables, and for generating known values to pass
+to other programs.
+
+## The Unix directory file structure (a.k.a. where am I?)
 
 Unix uses a hierarchical file system structure, like an upside down tree
 with root (/) at the base.
@@ -79,29 +101,25 @@ directory (/home/username)
 
 It looks like this
 
-
-# Let's get started
-
-One very basic command is `echo`. This command just prints text to
-the terminal. Try the command:
-
-    echo Hello, World!
-
-Then press enter. You should see the text "Hello, World!" printed back
-to you. The echo command is useful for printing from a shell script,
-for displaying variables, and for generating known values to pass
-to other programs.
+![Unix](Slide1.jpg)
 
 ## Moving around the file system
 
 Let's learn how to move around the file system using command line
-programs. This is really easy to do using a GUI (just click on
+programs. This is fairly straightforward to do using a GUI (just click on
 things). Once you learn the basic commands, you'll see that it is
-really easy to do in the shell too.
+not too bad at the shell either.
 
-First we have to know where we are. The program `pwd` (print working
-directory) tells you where you are sitting in the directory tree. The
-command `ls` will list the files in files in the current
+First we have to know where we are. The program 
+
+  `pwd` (print working directory) 
+
+tells you where you are sitting in the directory tree. The
+command 
+
+   `ls` 
+
+will list the files in files in the current
 directory. Directories are often called "folders" because of how they
 are represented in GUIs. Directories are just listings of files. They
 can contain other files or directories.
@@ -112,6 +130,11 @@ directory where they have full access to do whatever they want. In
 this case, the `pwd` command tells us that we are in the `/home/username`
 directory.  You can always find out your user name by entering the
 command `whoami`.
+
+Let's start by listing the files in the directory you just downloaded.
+
+   ls msu_al340
+
 
 ## File Types
 
@@ -156,16 +179,13 @@ you will see that `testfile` is gone.
 ## Changing Directories
 
 Now, let's move to a different directory. The command `cd` (change
-directory) is used to move around. Let's move into the `boot-camps`
+directory) is used to move around. Let's move into the `msu_al340`
 directory. Enter the following command:
 
-    cd boot-camps
+    cd msu_al340
 
 Use the `ls` command to see what is inside this directory.  This
-directory contains all of the material for this boot camp. Now move to
-the directory containing the data for the shell tutorial:
-
-    cd shell
+directory contains all of the material for this tutorial. 
 
 Now use the `ls` command to see what is inside this directory. You
 will see that there is an entry which is green. This means that this
@@ -173,8 +193,17 @@ is an executable. If you use `ls -F` you will see that this file ends
 with a star.
 
 If you enter the `cd` command by itself, you will return to the home
-directory. Try this, and then navigate back to the `shell`
+directory. Try this, and then navigate back to the `msu_al340`
 directory.
+
+If you want to go back to the directory you were just in, up the tree, 
+you can type
+
+   cd ..
+
+Now try a hunt.  Move around in the msu_al340 directory and try to find 
+the file youfoundit.txt
+
 
 ## Arguments
 
@@ -225,20 +254,21 @@ Type:
 
 Then enter the command:
 
-    ls boot-camps
+    ls msu_al340
 
-This will list the contents of the `boot-camps` directory without
-you having to navigate there. Now enter:
+This will list the contents of the `msu_al340` directory without
+you having to navigate there. 
 
-    ls boot-camps/shell
 
-This prints the contents of `shell`. The `cd` command works in a
-similar way. Try entering:
+The `cd` command works in a similar way. Try entering:
 
-    cd boot-camps/shell
+    cd
+    cd msu_al340/hidden
 
-and you will jump directly to `shell` without having to go through
+and you will jump directly to `hidden` without having to go through
 the intermediate directory.
+
+Try finding the closebutnotit.txt file without changing directories.
 
 ## Full vs. Relative Paths
 
@@ -260,14 +290,14 @@ directory in `home` which is a directory in `/`.
 
 Now enter the following command:
 
-    cd /home/username/boot-camps/shell
+    cd /home/username/msu_al340/hidden
 
-This jumps to `shell`. Now go back to the home directory (cd). We saw
+This jumps to `hidden`. Now go back to the home directory (cd). We saw
 earlier that the command:
 
-    cd boot-camps/shell
+    cd msu_al340/hidden
 
-had the same effect - it took us to the `shell` directory. But,
+had the same effect - it took us to the `hidden` directory. But,
 instead of specifying the full path
 (`/home/swc/boot-camps/shell`), we specified a *relative path*. In
 other words, we specified the path relative to our current
@@ -295,11 +325,11 @@ familiar in there?
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
-`~`, is a shortcut for your home directory. Navigate to the `shell`
+`~`, is a shortcut for your home directory. Navigate to the `msu_al340`
 directory:
 
     cd 
-    cd boot-camps/shell
+    cd msu_al340/hidden
 
 Then enter the command:
 
@@ -311,12 +341,12 @@ above your current directory. Thus:
 
     ls ..
 
-prints the contents of the `/home/swc/boot-camps`. You can chain
+prints the contents of the `/home/username/msu_al340`. You can chain
 these together, so:
 
     ls ../../
 
-prints the contents of `/home/swc` which is your home
+prints the contents of `/home/username` which is your home
 directory. Finally, the special directory `.` always refers to your
 current directory. So, `ls`, `ls .`, and `ls ././././.` all do the
 same thing, they print the contents of the current directory. This may
@@ -328,47 +358,28 @@ To summarize, while you are in the `shell` directory, the commands
 same thing. These shortcuts are not necessary, they are provided for
 your convenience.
 
-### Our data set: Cochlear Implants
+### Our data set: Interview Subjects
 
-A cochlear implant is a small electronic device that is surgically
-implanted in the inner ear to give deaf people a sense of
-hearing. More than a quarter of a million people have them, but there
-is still no widely-accepted benchmark to measure their effectiveness.
-In order to establish a baseline for such a benchmark, a researcher
-got teenagers with CIs to listen to audio files on their computer and
-report:
+We want to interview people about their experience in the Polar Vortex of 
+2014 to create a story of survival.  A few different undergraduate interview
+people on campus and ask their date of birth, gender, Critical Internal temperature type (CI type), Volume of snow experienced, Range they had to walk and 
+their self-reported ability to Discriminate temperature.
 
-1.  the quietest sound they could hear
-2.  the lowest and highest tones they could hear
-3.  the narrowest range of frequencies they could discriminate
-
-To participate, subjects attended a laboratory and one of the lab
-techs played an audio sample, and recorded their data - when they
-first heard the sound, or first heard a difference in the sound.  Each
-set of test results were written out to a text file, one set per file.
+Each interview 
+was written out to a text file, one set per file.
 Each participant has a unique subject ID, and a made-up subject name.
-Each experiment has a unique experiment ID. The experiment has
+Each interview has a unique experiment ID. The undergraduates have 
 collected 351 files so far.
 
 The data is a bit of a mess! There are inconsistent file names, there
 are extraneous "NOTES" files that we'd like to get rid of, and the
 data is spread across many directories. We are going to use shell
-commands to get this data into shape. By the end we would like to:
+commands to look at this dat and get it into shape. 
 
-1.  Put all of the data into one directory called "alldata"
-
-2.  Get rid of the extraneous "NOTES" files
-
-3.  Put all the data in to one file
-
-4.  Figure out how many measurements we took
-
-If we can get through this example in the available time, we will move
-onto more advanced shell topics...
 
 ### Wild cards
 
-Navigate to the `~/boot-camps/shell/data/THOMAS` directory. This
+Navigate to the `~/msu_al340/data/THOMAS` directory. This
 directory contains our hearing test data for THOMAS. If we type `ls`,
 we will see that there are a bunch of files which are just four digit
 numbers. By default, `ls` lists all of the files in a given
@@ -413,7 +424,7 @@ navigating to a different directory.
 2.  List all of the files in `/bin` that contain the letter 'a'
 3.  List all of the files in `/bin` that end with the letter 'o'
 
-BONUS: List all of the files in '/bin' that contain the letter 'a' and 'c'
+BONUS: List all of the files in '/bin' that contain the letter 'a' or 'c'
 
 * * * *
 
@@ -424,16 +435,16 @@ lot of time. When you start typing out the name of a directory, then
 hit the tab key, the shell will try to fill in the rest of the
 directory name. For example, enter:
 
-    cd b<tab>
+    cd m<tab>
 
 The shell will fill in the rest of the directory name for
-`boot-camps`. Now enter:
+`msu_al340`. Now go to msu_al340/data/THOMAS
 
-    ls s<tab><tab>
+    ls 02<tab><tab>
 
 When you hit the first tab, nothing happens. The reason is that there
 are multiple directories in the home directory which start with
-`s`. Thus, the shell does not know which one to fill in. When you hit
+`02`. Thus, the shell does not know which one to fill in. When you hit
 tab again, the shell will list the possible choices.
 
 Tab completion can also fill in the names of programs. For example,
@@ -521,7 +532,7 @@ this directory. Now, try to run the program by entering:
     hello
 
 You should get an error saying that hello cannot be found. That is
-because the directory `/home/swc/boot-camps/shell` is not in the
+because the directory `/home/username/msu_al340` is not in the
 `PATH`. You can run the `hello` program by entering:
 
     ./hello
@@ -531,11 +542,11 @@ directory. This tells the shell to run the `hello` program which is
 located right here. So, you can run any program by entering the path
 to that program. You can run `hello` equally well by specifying:
 
-    /home/swc/boot-camps/shell/hello
+    /home/username/msu_al340/hello
 
 Or by entering:
 
-    ../shell/hello
+    ~/msu_al340/hello
 
 When there are no `/` characters, the shell assumes you want to look
 in one of the default places for the program.
@@ -562,12 +573,12 @@ is where the name comes from, `cat` is short for concatenate).
 * * * *
 **Short Exercises**
 
-1.  Print out the contents of the `~/boot-camps/shell/dictionary.txt`
+1.  Print out the contents of the `~/msu_al340/dictionary.txt`
     file. What does this file contain?
 
-2.  Without changing directories, (you should still be in `shell`),
+2.  Without changing directories, (you should still be in `msu_al340`),
     use one short command to print the contents of all of the files in
-    the `/home/swc/boot-camps/shell/data/THOMAS` directory.
+    the `/home/username/msu_al340/data/THOMAS` directory.
 
 * * * *
 
@@ -575,7 +586,7 @@ is where the name comes from, `cat` is short for concatenate).
 be annoying to use. The program, `less`, is useful for this
 case. Enter the following command:
 
-    less ~/boot-camps/shell/dictionary.txt
+    less ~/msu_al340/dictionary.txt
 
 `less` opens the file, and lets you navigate through it. The commands
 are identical to the `man` program.
@@ -604,18 +615,12 @@ Remember, the `man` program actually uses `less` internally and
 therefore uses the same commands, so you can search documentation
 using "/" as well!
 
-* * * *
-**Pro Tip**
-
-You can search in reverse while using 'less'
-
-* * * *
 
 
 ## Redirection
 
-Let's turn to the experimental data from the hearing tests that we
-began with. This data is located in the `~/boot-camps/shell/data`
+Let's turn to the interviews that we
+began with. This data is located in the `~/msu_al340/data`
 directory. Each subdirectory corresponds to a particular participant
 in the study. Navigate to the `Bert` subdirectory in `data`.  There
 are a bunch of text files which contain experimental data
@@ -642,7 +647,7 @@ exists.
 Use `>>`, to append the contents of all of the files whose names
 contain the number 4 in the directory:
 
-    /home/swc/boot-camps/shell/data/gerdal
+    /home/username/msu_al340/data/gerdal
 
 to the existing `all_data` file. Thus, when you are done `all_data`
 should contain all of the experiment data from Bert and any
@@ -655,7 +660,7 @@ number 4.
 ## Creating, moving, copying, and removing
 
 We've created a file called `all_data` using the redirection operator
-`>`. This file is critical - it's our analysis results - so we want to
+`>`. This file is critical - it's our interview results - so we want to
 make copies so that the data is backed up.
 Lets copy the file using the `cp` command. The `cp`
 command backs up the file. Navigate to the `data` directory and enter:
@@ -784,7 +789,7 @@ data to come in. Now type:
     are
     good
 
-then CONTROL+d. You should is the lines:
+then CONTROL+d. You should see the lines:
 
     are
     good
@@ -839,7 +844,7 @@ name to the file, then sort it and make a new file called Sorted.
 
 * * * *
 
-Let's navigate back to `~/boot-camps/shell/data`. Enter the following command:
+Let's navigate back to `~/msu_al340/data`. Enter the following command:
 
     wc Bert/* | sort -k 3 -n
 
@@ -907,8 +912,7 @@ You can search the contents of a file using the command `grep`. The
 `grep` program is very powerful and useful especially when combined
 with other commands by using the pipe. Navigate to the `Bert`
 directory. Every data file in this directory has a line which says
-"Range". The range represents the smallest frequency range that can be
-discriminated. Lets list all of the ranges from the tests that Bert
+"Range". Lets list all of the ranges from the interviews that Bert
 conducted:
 
     grep Range *
@@ -923,15 +927,6 @@ file containing the file with the smallest Range. Use the commands
 
 * * * *
 
-* * * *
-** Meeting our objectives **
-1.  Put all of the data into one directory called "alldata"
-
-2.  Get rid of the extraneous "NOTES" files
-
-3.  Put	all the data in to one file
-
-4.  Figure out how many measurements we took
 
 
 
