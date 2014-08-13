@@ -1,6 +1,8 @@
 # The Shell
 
-**Material by Paul Wilson, Milad Fatenejad, Sasha Wood, and Radhika Khetani for Software Carpentry (http://http://software-carpentry.org/) and modified by Tracy Teal**
+Author: Tracy Teal  
+Original contributors:
+Paul Wilson, Milad Fatenejad, Sasha Wood and Radhika Khetani for Software Carpentry (http://http://software-carpentry.org/)
 
 ## Objectives
 - What is the shell?
@@ -13,26 +15,54 @@
 - What is it good for?
 - Where are resources where I can learn more? (because the shell is awesome)
 
-## What is the shell? 
+## What is the shell?
 
 The *shell* is a program that presents a command line interface
 which allows you to control your computer using commands entered
 with a keyboard instead of controlling graphical user interfaces
 (GUIs) with a mouse/keyboard combination.
 
-There are many reasons to learn about the shell. The main reason is *power*.
-The command line gives you the power to do your work more efficiently and 
-more quickly.  Alas, there is a bit of a barrier to entry.
+There are many reasons to learn about the shell.
+
+* For most bioinformatics tools, you have to use the shell. There is no
+graphical interface. If you want to work in metagenomics or genomics you're
+going to need to use the shell.
+* The shell gives you *power*. The command line gives you the power to do your work more efficiently and
+more quickly.  When you need to do things tens to hundreds of times,
+knowing how to use the shell is transformative.
+* To use remote computers or cloud computing, you need to use the shell.
+* We're going to use it in this class, for all of the reasons above.
 
 ![Automation](gvng.jpg)
 
   Unix is user-friendly. It's just very selective about who its friends are.
   - Anonymous
 
-Today we're going to go through how to access Unix/Linux and some of the basic 
+Today we're going to go through how to access Unix/Linux and some of the basic
 shell commands.
 
+## Information on the shell
+
+shell cheat sheets:<br>
+* [http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/](http://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/)
+* [https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md](https://github.com/swcarpentry/boot-camps/blob/master/shell/shell_cheatsheet.md)
+
+Explain shell - a web site where you can see what the different components of
+a shell command are doing.  
+* [http://explainshell.com](http://explainshell.com)
+* [http://www.commandlinefu.com](http://www.commandlinefu.com)
+
+## Outline
+
+* A shell use case
+* How to access the shell
+
+
+
 ## An automation use case
+
+
+
 
 Text Complexity in Newspapers
 http://cdn.lexile.com/m/cms_page_media/135/Text%20Complexity%20of%20English%20International%20Newspapers_1.pdf
@@ -48,174 +78,145 @@ Count occurances of a particular word
 
 ## How to access the shell
 
-Use a browser to open the tutorial on github, located at:
+The shell is already available on Mac and Linux. For Windows, you'll
+have to download a separate program.
 
-    https://github.com/tracykteal/msu_al340
 
-The shell is just a program and there are many different shell
-programs that have been developed. The most common shell (and the one
-we will use) is called the Bourne-Again SHell (bash). Even if bash is
-not the default shell, it is usually installed on most systems and can be
-started by typing `bash` in the terminal. Many commands, especially a
-lot of the basic ones, work across the various shells but many things
-are different. We recommend sticking with bash and learning it well.
-([Here is a link for more information](http://en.wikipedia.org/wiki/Bash_(Unix_shell))
+Mac
+---  
+On Mac the shell is available through Terminal  
+Applications -> Utilities -> Terminal  
+Go ahead and drag the Terminal application to your Dock for easy access.
 
-We're going to work on a server set up for this course, but you can also use
-the shell on your own computer.  On a Mac this is the Terminal and on a PC 
-you can download programs like Cygwin.
+Windows
+-------
+For Windows, we're going to be using gitbash.  
+Download and install [gitbash](http://msysgit.github.io)
+Open up the program.
 
-First we'll connect to that server.  The way we connect to the server is 
-through something called 'ssh' or secure shell.  
+Linux  
+-----
+Well, you should be set.
 
-   ssh msu_username@fws.cal.msu.edu
 
-Now you're in the bash shell.
 
 ## Starting with the shell
 
 We will spend most of our time learning about the basics of the shell
-by manipulating some experimental data from a hearing test. To get
-the data for this test and this documentation, you will need internet access. 
-Just enter the
-command:
+by manipulating some experimental data from a hearing test.
+
+We're going to create a directory that we're going to do this work in
+and then download the data.
+
+To create the directory type:
+    mkdir edamame
+This means, make directory 'edamame'
+
+Now we're going to go in to that directory
+    cd edamame
+This stands for 'change directory'
+
+Now let's look at see what's in here. There should be nothing
+right now, because we just made it, but let's check. Type:
+    ls
+ls stands for 'list' and it lists the contents of a directory.
+
+Now we're going to download the data for the tutorial. For this you'll need
+internet access, because you're going to get it off the web.  
+Enter the command:
 
     git clone https://github.com/tracykteal/msu_al340.git
 
 This command will grab all of the data needed for this workshop from
-the internet.  (We're not going to talk about git, but it's a tool for 
+the internet.  (We're not going to talk about git right now, but it's a tool for
 doing version control.)
 
-## Some resources for shell information
+Now let's check to see that we got the data. Again type:
+    ls
+Now we should see a list of a lot of files, including something called data.
 
-http://explainshell.com
-http://www.commandlinefu.com
+In there, all mixed up together are files and directories/folders. If we want to
+know which is which, we can type:
+    ls -F
+Anything with a "/" after it is a directory.  
+Things with a "*" after them are programs.  
+It there's nothing there it's a file.
 
-## Commands in the shell - let's get started
+You can also use the command `ls -l` to see whether items in a
+directory are files or directories. `ls -l` gives a lot more
+information too, such as the size of the file
 
-One very basic command is `echo`. This command just prints text to
-the terminal. Try the command:
-
-    echo Hello, World!
-
-Then press enter. You should see the text "Hello, World!" printed back
-to you.  This doesn't seem particuarly helpful, other than to just be fun, 
-but we're working on automation it is useful for printing from a shell script,
-for displaying variables, and for generating known values to pass
-to other programs.
+So, we can see that we have several files, directories and a program. Great!
 
 ## The Unix directory file structure (a.k.a. where am I?)
 
-Unix uses a hierarchical file system structure, like an upside down tree
-with root (/) at the base.
+As you've already just seen, you can move around in different directories
+or folders at the command line. Why would you want to do this, rather
+than just navigating around the normal way.
 
-When you log in you are on one of the branches of that tree, your home
-directory (/home/username)
+When you're working with bioinformatics programs, you're working with
+your data and it's key to be able to have that data in the right place
+and make sure the program has access to the data. Many of the problems
+people run in to with command line bioinformatics programs is not having the
+data in the place the program expects it to be.
 
-It looks like this
+The file structure looks like this:
 
 ![Unix](Slide1.jpg)
 
 ## Moving around the file system
 
-Let's learn how to move around the file system using command line
-programs. This is fairly straightforward to do using a GUI (just click on
-things). Once you learn the basic commands, you'll see that it is
-not too bad at the shell either.
+Let's practice moving around a bit.
 
-First we have to know where we are. The program 
+We're going to work in that data directory we just downloaded.
 
-  `pwd` (print working directory) 
+First let's navigate there using the regular way.
 
-tells you where you are sitting in the directory tree. The
-command 
+First we did something like go to the folder of our username. Then we opened
+'edamame', then 
+and finally 'data'
 
-   `ls` 
+Let's draw out how that went.
 
-will list the files in files in the current
-directory. Directories are often called "folders" because of how they
-are represented in GUIs. Directories are just listings of files. They
-can contain other files or directories.
+Now let's draw some of the other files and folders along that way.
 
-Whenever you start up a terminal, you will start in a special
-directory called the *home* directory. Every user has their own home
-directory where they have full access to do whatever they want. In
-this case, the `pwd` command tells us that we are in the `/home/username`
-directory.  You can always find out your user name by entering the
-command `whoami`.
+This is called a hierarchical file system structure, like an upside down tree
+with root (/) at the base.
 
-Let's start by listing the files in the directory you just downloaded.
+When you are working at your computer or log in to a remote computer,
+you are on one of the branches of that tree, your home directory (/home/username)
 
-   ls msu_al340
+Now let's go do that same navigation at the command line.
 
+Type
+    cd
+This put's you in your home directory. This folder here.
 
-## File Types
+Now using `cd` and `ls`, go in to the 'data' directory and list its contents.
 
-When you enter the `ls` command lists the contents of the current
-directory. There are several items in the home directory, notice that
-they are all colored blue. This tells us that all of these items are
-directories as opposed to files.
+Let's also check to see where we are. Sometimes when we're wandering around
+in the file system, it's easy to lose track of where we are and get lost.
 
-Lets create an empty file using the `touch` command. Enter the
-command:
+If you want to know what directory you're currently in, type
+    pwd
+This stands for 'print working directory'. The directory you're currently
+working in.
 
-    touch testfile
+What if we want to move back up and out of the 'data' directory? Can we just
+type 'edamame'? Try it and see what happens.
 
-Then list the contents of the directory again. You should see that a
-new entry, called `testfile`, exists. It is colored white meaning that
-it is a file, as opposed to a directory. The `touch` command just
-creates an empty file.
+To go 'back up a level' we need to use `..`
 
-Some terminals will not color the directory entries in this very
-convenient way. In those terminals, use `ls -F` instead of `ls`. The
-`-F` argument modifies the results so that a slash is placed at the
-end of directories. If the file is *executable* meaning that it can be
-run like a program, then a star will be placed at the end of of the
-file name.
+Type
+    cd ..
 
-You can also use the command `ls -l` to see whether items in a
-directory are files or directories. `ls -l` gives a lot more
-information too, such as the size of the file and information about
-the owner. If the entry is a directory, then the first letter will be
-a "d". The fifth column shows you the size of the entries in
-bytes. Notice that `testfile` has a size of zero.
+Now do `ls` and `pwd`. See now that we went back up in to the 'edamame'
+directory. `..` just means go back up a level.
 
-Now, let's get rid of `testfile`. To remove a file, just enter the
-command:
+** Exercise
 
-    rm testfile
-
-The `rm` command can be used to remove files. If you enter `ls` again,
-you will see that `testfile` is gone.
-
-
-## Changing Directories
-
-Now, let's move to a different directory. The command `cd` (change
-directory) is used to move around. Let's move into the `msu_al340`
-directory. Enter the following command:
-
-    cd msu_al340
-
-Use the `ls` command to see what is inside this directory.  This
-directory contains all of the material for this tutorial. 
-
-Now use the `ls` command to see what is inside this directory. You
-will see that there is an entry which is green. This means that this
-is an executable. If you use `ls -F` you will see that this file ends
-with a star.
-
-If you enter the `cd` command by itself, you will return to the home
-directory. Try this, and then navigate back to the `msu_al340`
-directory.
-
-If you want to go back to the directory you were just in, up the tree, 
-you can type
-
-   cd ..
-
-Now try a hunt.  Move around in the msu_al340 directory and try to find 
-the file youfoundit.txt
+Now we're going to try a hunt.  
+Move around in the 'hidden' directory and try to find the file youfoundit.txt
 
 
 ## Arguments
@@ -235,22 +236,11 @@ forward and b to go backwards. When you are done reading, just hit `q`
 to quit.
 
 Programs that are run from the shell can get extremely complicated. To
-see an example, open up the manual page for the `find` program. 
+see an example, open up the manual page for the `find` program.
 No one can possibly learn all of
 these arguments, of course. So you will probably find yourself
 referring back to the manual page frequently.
 
-* * * *
-**Short Exercise**
-
-1. Use the manual page for `ls` to guess what you would expect from
-using the arguments `-l`, '-t', '-r' at the same time.
-2. Try the following and see if you can figure out what they do, either by examining the results or consulting the manual page.
-   * `ls -lS` (equivalent to `ls -l -S`)
-   * `ls -lt` (equivalent to `ls -l -t`)
-   * `ls -1`  (that's the number one, not a letter 'ell')
-
-* * * *
 
 
 ## Examining the contents of other directories
@@ -259,7 +249,7 @@ By default, the `ls` commands lists the contents of the working
 directory (i.e. the directory you are in). You can always find the
 directory you are in using the `pwd` command. However, you can also
 give `ls` the names of other directories to view. Navigate to the
-home directory if you are not already there. 
+home directory if you are not already there.
 
 Type:
 
@@ -270,7 +260,7 @@ Then enter the command:
     ls msu_al340
 
 This will list the contents of the `msu_al340` directory without
-you having to navigate there. 
+you having to navigate there.
 
 
 The `cd` command works in a similar way. Try entering:
@@ -281,7 +271,7 @@ The `cd` command works in a similar way. Try entering:
 and you will jump directly to `hidden` without having to go through
 the intermediate directory.
 
-Try finding the closebutnotit.txt file without changing directories.
+Try finding the anotherfile.txt file without changing directories.
 
 ## Full vs. Relative Paths
 
@@ -341,7 +331,7 @@ home directory is very common. So, in the shell the tilde character,
 `~`, is a shortcut for your home directory. Navigate to the `msu_al340`
 directory:
 
-    cd 
+    cd
     cd msu_al340/hidden
 
 Then enter the command:
@@ -373,21 +363,21 @@ your convenience.
 
 ### Our data set: Interview Subjects
 
-We want to interview people about their experience in the Polar Vortex of 
+We want to interview people about their experience in the Polar Vortex of
 2014 to create a story of survival.  A few different undergraduate interview
-people on campus and ask their date of birth, gender, Critical Internal temperature type (CI type), Volume of snow experienced, Range they had to walk and 
+people on campus and ask their date of birth, gender, Critical Internal temperature type (CI type), Volume of snow experienced, Range they had to walk and
 their self-reported ability to Discriminate temperature.
 
-Each interview 
+Each interview
 was written out to a text file, one set per file.
 Each participant has a unique subject ID, and a made-up subject name.
-Each interview has a unique experiment ID. The undergraduates have 
+Each interview has a unique experiment ID. The undergraduates have
 collected 351 files so far.
 
 The data is a bit of a mess! There are inconsistent file names, there
 are extraneous "NOTES" files that we'd like to get rid of, and the
 data is spread across many directories. We are going to use shell
-commands to look at this dat and get it into shape. 
+commands to look at this dat and get it into shape.
 
 
 ### Wild cards
@@ -1036,7 +1026,7 @@ the command line, automate something you don't really need to automate.
 
 - The people who run this server
 - iCER and the High Performance Computing Cluster http://icer.msu.edu
-If you're doing work with a professor, you can get a free account and storage 
+If you're doing work with a professor, you can get a free account and storage
 on the HPCC.  There are also people at iCER who will help get you started
 or answer questions.
 
