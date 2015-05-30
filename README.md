@@ -109,11 +109,11 @@ We're going to create a directory that we're going to do this work in
 and then download the data.
 
 To create the directory type:
-    mkdir edamame
-This means, make directory 'edamame'
+    mkdir carpentry
+This means, make directory 'carpentry'
 
 Now we're going to go in to that directory
-    cd edamame
+    cd carpentry
 This stands for 'change directory'
 
 Now let's look at see what's in here. There should be nothing
@@ -130,6 +130,10 @@ Enter the command:
 This command will grab all of the data needed for this workshop from
 the internet.  (We're not going to talk about git right now, but it's a tool for
 doing version control.)
+
+If this doesn't work, you can download it from
+
+   http://teckla.idyll.org/~tracyt/transfer/msu_al340.zip
 
 Now let's check to see that we got the data. Again type:
     ls
@@ -173,7 +177,7 @@ We're going to work in that data directory we just downloaded.
 First let's navigate there using the regular way.
 
 First we did something like go to the folder of our username. Then we opened
-'edamame', then 
+'carpentry', then 
 and finally 'data'
 
 Let's draw out how that went.
@@ -203,20 +207,22 @@ This stands for 'print working directory'. The directory you're currently
 working in.
 
 What if we want to move back up and out of the 'data' directory? Can we just
-type 'edamame'? Try it and see what happens.
+type 'carpentry'? Try it and see what happens.
 
 To go 'back up a level' we need to use `..`
 
 Type
     cd ..
 
-Now do `ls` and `pwd`. See now that we went back up in to the 'edamame'
+Now do `ls` and `pwd`. See now that we went back up in to the 'carpentry'
 directory. `..` just means go back up a level.
 
-** Exercise
+***
+**Exercise**
 
 Now we're going to try a hunt.  
 Move around in the 'hidden' directory and try to find the file youfoundit.txt
+***
 
 
 ## Arguments
@@ -257,21 +263,25 @@ Type:
 
 Then enter the command:
 
-    ls msu_al340
+    ls carpentry
 
-This will list the contents of the `msu_al340` directory without
+This will list the contents of the `carpentry` directory without
 you having to navigate there.
 
 
 The `cd` command works in a similar way. Try entering:
 
     cd
-    cd msu_al340/hidden
+    cd carpentry/hidden
 
 and you will jump directly to `hidden` without having to go through
 the intermediate directory.
 
+***
+**Exercise**
+
 Try finding the anotherfile.txt file without changing directories.
+***
 
 ## Full vs. Relative Paths
 
@@ -293,16 +303,16 @@ directory in `home` which is a directory in `/`.
 
 Now enter the following command:
 
-    cd /home/username/msu_al340/hidden
+    cd /home/username/carpentry/hidden
 
 This jumps to `hidden`. Now go back to the home directory (cd). We saw
 earlier that the command:
 
-    cd msu_al340/hidden
+    cd carpentry/hidden
 
 had the same effect - it took us to the `hidden` directory. But,
 instead of specifying the full path
-(`/home/swc/boot-camps/shell`), we specified a *relative path*. In
+(`/home/username/carpentry/hidden`), we specified a *relative path*. In
 other words, we specified the path relative to our current
 directory. A full path always starts with a `/`. A relative path does
 not. You can usually use either a full path or a relative path
@@ -314,13 +324,13 @@ Over time, it will become easier for you to keep a mental note of the
 structure of the directories that you are using and how to quickly
 navigate amongst them.
 
-* * * *
-**Short Exercise**
+***
+**Exercise**
 
 Now, list the contents of the /bin directory. Do you see anything
 familiar in there?
+***
 
-* * * *
 
 ## Saving time with shortcuts, wild cards, and tab completion
 
@@ -328,11 +338,11 @@ familiar in there?
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
-`~`, is a shortcut for your home directory. Navigate to the `msu_al340`
+`~`, is a shortcut for your home directory. Navigate to the `carpentry`
 directory:
 
     cd
-    cd msu_al340/hidden
+    cd carpentry/hidden
 
 Then enter the command:
 
@@ -344,7 +354,7 @@ above your current directory. Thus:
 
     ls ..
 
-prints the contents of the `/home/username/msu_al340`. You can chain
+prints the contents of the `/home/username/carpentry`. You can chain
 these together, so:
 
     ls ../../
@@ -382,7 +392,7 @@ commands to look at this dat and get it into shape.
 
 ### Wild cards
 
-Navigate to the `~/msu_al340/data/THOMAS` directory. This
+Navigate to the `~/carpentry/data/THOMAS` directory. This
 directory contains our hearing test data for THOMAS. If we type `ls`,
 we will see that there are a bunch of files which are just four digit
 numbers. By default, `ls` lists all of the files in a given
@@ -441,7 +451,7 @@ directory name. For example, enter:
     cd m<tab>
 
 The shell will fill in the rest of the directory name for
-`msu_al340`. Now go to msu_al340/data/THOMAS
+`carpentry`. Now go to carpentry/data/THOMAS
 
     ls 02<tab><tab>
 
@@ -535,7 +545,7 @@ this directory. Now, try to run the program by entering:
     hello
 
 You should get an error saying that hello cannot be found. That is
-because the directory `/home/username/msu_al340` is not in the
+because the directory `/home/username/carpentry` is not in the
 `PATH`. You can run the `hello` program by entering:
 
     ./hello
@@ -545,11 +555,11 @@ directory. This tells the shell to run the `hello` program which is
 located right here. So, you can run any program by entering the path
 to that program. You can run `hello` equally well by specifying:
 
-    /home/username/msu_al340/hello
+    /home/username/carpentry/hello
 
 Or by entering:
 
-    ~/msu_al340/hello
+    ~/carpentry/hello
 
 When there are no `/` characters, the shell assumes you want to look
 in one of the default places for the program.
@@ -576,12 +586,12 @@ is where the name comes from, `cat` is short for concatenate).
 * * * *
 **Short Exercises**
 
-1.  Print out the contents of the `~/msu_al340/dictionary.txt`
+1.  Print out the contents of the `~/carpentry/dictionary.txt`
     file. What does this file contain?
 
-2.  Without changing directories, (you should still be in `msu_al340`),
+2.  Without changing directories, (you should still be in `carpentry`),
     use one short command to print the contents of all of the files in
-    the `/home/username/msu_al340/data/THOMAS` directory.
+    the `/home/username/carpentry/data/THOMAS` directory.
 
 * * * *
 
@@ -589,7 +599,7 @@ is where the name comes from, `cat` is short for concatenate).
 be annoying to use. The program, `less`, is useful for this
 case. Enter the following command:
 
-    less ~/msu_al340/dictionary.txt
+    less ~/carpentry/dictionary.txt
 
 `less` opens the file, and lets you navigate through it. The commands
 are identical to the `man` program.
@@ -623,7 +633,7 @@ using "/" as well!
 ## Redirection
 
 Let's turn to the interviews that we
-began with. This data is located in the `~/msu_al340/data`
+began with. This data is located in the `~/carpentry/data`
 directory. Each subdirectory corresponds to a particular participant
 in the study. Navigate to the `Bert` subdirectory in `data`.  There
 are a bunch of text files which contain experimental data
@@ -650,7 +660,7 @@ exists.
 Use `>>`, to append the contents of all of the files whose names
 contain the number 4 in the directory:
 
-    /home/username/msu_al340/data/gerdal
+    /home/username/carpentry/data/gerdal
 
 to the existing `all_data` file. Thus, when you are done `all_data`
 should contain all of the experiment data from Bert and any
@@ -847,7 +857,7 @@ name to the file, then sort it and make a new file called Sorted.
 
 * * * *
 
-Let's navigate back to `~/msu_al340/data`. Enter the following command:
+Let's navigate back to `~/carpentry/data`. Enter the following command:
 
     wc Bert/* | sort -k 3 -n
 
